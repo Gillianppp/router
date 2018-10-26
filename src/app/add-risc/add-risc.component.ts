@@ -23,7 +23,7 @@ export class AddRiscComponent implements OnInit {
     this.patient = new Patient(0,"","","","","");
   }
 
-  savePatient(response:PatientResponse){
+  savePatient(patient:Patient){
     this.service.savePatient(this.patient)
     .subscribe((response) => { 
       console.log('result',response);
