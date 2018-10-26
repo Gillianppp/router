@@ -34,6 +34,7 @@ export class surveyService {
   private surveyUrl = 'api/surveys';  // URL to web api
   private riscUrl = 'http://risc-api20180802104103.azurewebsites.net/api/Survey/';
   private tempAnswer;
+  private patientId;
   private hasSaved = false;
   
   constructor(
@@ -56,6 +57,13 @@ export class surveyService {
     this.tempAnswer = surveyAnswer;
   }
 
+  savePatientId(id:number):void{
+    this.patientId = id;
+  }
+
+  retrievePatientId():number{
+    return this.patientId;
+  }
   retrieveTempAnswer():SurveyAnswer{
     return this.tempAnswer;
   }

@@ -14,9 +14,12 @@ export class surveyDetailResolver implements Resolve<Survey> {
   survey:Survey;
   patientId:number;
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Survey> {
-    let id = route.paramMap.get('id');
-    this.patientId = parseInt(route.paramMap.get('patientId'));
+    this.patientId = route.queryParams.patientId;
 
+    let id = route.paramMap.get('id');
+
+   // this.patientId = this.cs.retrievePatientId();
+    console.log("inside resolver service",this.patientId);
     return this.cs.getsurvey(id).pipe(
       take(1),
       map(survey => {

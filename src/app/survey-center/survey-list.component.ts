@@ -31,6 +31,7 @@ export class surveyListComponent implements OnInit {
     this.surveys$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
         this.selectedId = +params.get('id');
+        this.service.savePatientId(this.selectedId);
         console.log("This is the patientId:",this.selectedId);
         return this.service.getnoSurveys();
       })
