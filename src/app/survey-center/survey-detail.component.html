@@ -13,17 +13,18 @@
                     </div>
                     </div>
                     <div class="row">
-                    <div class="col-md-10" [hidden]="response.Type != 'text'"  *ngFor="let response of prompt.ResponseSet;let k=index;">               
+                    <div class="col-md-12" [hidden]="response.Type != 'text'"  *ngFor="let response of prompt.ResponseSet;let k=index;">               
                         <div class="q" style="min-width:600px;" [hidden]="response.Type != 'text'">
-                            <input  type="text" class="form-control" [(ngModel)]="survey.SurveyAnswer.SectionAnswers[i].Answers[j].Controls[k].Value" placeholder="" />
+                            <input  type="text" style="margin-bottom:20px;" class="form-control" [(ngModel)]="survey.SurveyAnswer.SectionAnswers[i].Answers[j].Controls[k].Value" placeholder="" />
                         </div>        
                     </div>
-                    <div class="col-md-10" [hidden]="response.Type != 'inline_text'"  *ngFor="let response of prompt.ResponseSet;let k=index;">               
+                    <div  class="col-md-12" [hidden]="response.Type != 'inline_text'"  *ngFor="let response of prompt.ResponseSet;let k=index;">               
                         <div class="q" style="min-width:400px;" [hidden]="response.Type != 'inline_text'">
-                            <input style="padding:inherit;width:40%"  type="text" class="form-control" [(ngModel)]="survey.SurveyAnswer.SectionAnswers[i].Answers[j].Controls[k].Value" placeholder="" />
+                            <input style="padding:inherit;width:40%;margin-bottom:20px;"  type="text" class="form-control" [(ngModel)]="survey.SurveyAnswer.SectionAnswers[i].Answers[j].Controls[k].Value" placeholder="" />
                         </div>        
                     </div>
-                    <div class="col-md-2" >
+                    <div class="col-md-12" >
+
                         <div class="checkbox" *ngFor="let response of prompt.ResponseSet;let k=index;">                                  
                             <div class="q" [hidden]="response.Type != 'checkbox'">
                                 <input type="checkbox"  [(ngModel)]="survey.SurveyAnswer.SectionAnswers[i].Answers[j].Controls[k].Value"  />
