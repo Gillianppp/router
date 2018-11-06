@@ -1,4 +1,15 @@
 <div *ngIf="survey" style="clear:both;">
+
+    <div class ="row" style="margin-bottom:20px;">      
+        <div class="col-4 q">
+            First Name  <input  class="form-control" style="width:80%;padding:inherit;" type="text" [(ngModel)]="survey.SurveyAnswer.User.FirstName" />
+        </div>
+
+        <div class="col-4 q">
+            Last Name <input  class="form-control"  style="width:80%;padding:inherit;" type="text" [(ngModel)]="survey.SurveyAnswer.User.LastName" />
+        </div>
+
+    </div>
       <ul class="questions">
         <li *ngFor="let section of survey.Sections;let i = index;">
         <div style="clear:both;">            
@@ -41,17 +52,7 @@
     </div>
     </li>
     </ul>
-    <h4>Interviewee Information</h4>
-    <div class ="row" style="margin-bottom:20px;">      
-        <div class="col-4 q">
-            First Name  <input  class="form-control" style="width:80%;padding:inherit;" type="text" [(ngModel)]="survey.SurveyAnswer.User.FirstName" />
-        </div>
-
-        <div class="col-4 q">
-            Last Name <input  class="form-control"  style="width:80%;padding:inherit;" type="text" [(ngModel)]="survey.SurveyAnswer.User.LastName" />
-        </div>
-
-    </div>
+   
 
    <button class="btn btn-risc" (click)="open()">Save</button>
 </div>
