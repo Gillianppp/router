@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <nav class="menu">    
-      <a href="">DASHBOARD</a>
+      <a routerLink="/all-surveys"  routerLinkActive="active">DASHBOARD</a>
       <a routerLink="/survey-center" routerLinkActive="active">RISC</a>
       <a href="">ANALYTICS</a>
       <a style="  float:right;" class="btn btn-primary btn-risc" routerLink="/add">ADD RISC</a>

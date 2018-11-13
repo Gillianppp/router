@@ -21,6 +21,7 @@ import { DialogService }           from './dialog.service';
 import { surveyDetailComponent } from './survey-center/survey-detail.component';
 import { CommonModule } from '@angular/common';
 import { AddRiscComponent } from './add-risc/add-risc.component';
+import { AllSurveysComponent } from './all-surveys/all-surveys.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { AddRiscComponent } from './add-risc/add-risc.component';
     LoginComponent,
     PageNotFoundComponent,
     AddRiscComponent,
+    AllSurveysComponent,
 
   ],
   providers: [

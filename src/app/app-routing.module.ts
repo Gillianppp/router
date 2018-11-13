@@ -8,12 +8,17 @@ import {AddRiscComponent} from './add-risc/add-risc.component';
 import { CanDeactivateGuard }       from './can-deactivate-guard.service';
 import { AuthGuard }                from './auth-guard.service';
 import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
+import { AllSurveysComponent } from './all-surveys/all-surveys.component';
 
 const appRoutes: Routes = [
   {
     path: 'survey-center',
     loadChildren: 'app/survey-center/survey-center.module#surveyCenterModule',
     data: { preload: true }
+  },
+  {
+    path:'all-surveys',
+    component:AllSurveysComponent
   },
   {
     path:'add',
