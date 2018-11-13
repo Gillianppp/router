@@ -1,0 +1,18 @@
+add all surveys component
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Committer: Ran Gong <ran.gong@slalom.com>
+#
+# On branch master
+# Your branch is up to date with 'origin/master'.
+#
+# Changes to be committed:
+#	new file:   src/app/all-surveys/all-surveys.component.css
+#	new file:   src/app/all-surveys/all-surveys.component.html
+#	new file:   src/app/all-surveys/all-surveys.component.spec.ts
+#	new file:   src/app/all-surveys/all-surveys.component.ts
+#	modified:   src/app/app-routing.module.ts
+#	modified:   src/app/app.component.ts
+#	modified:   src/app/app.module.ts
+#
