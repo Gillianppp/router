@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewSurvey } from '../survey-center/viewSurvey';
+import {surveyService} from '../survey-center/survey.service';
 
 @Component({
   selector: 'app-all-surveys',
@@ -9,7 +10,7 @@ import { ViewSurvey } from '../survey-center/viewSurvey';
 export class AllSurveysComponent implements OnInit {
   viewSurveys : ViewSurvey[];
   ssn : number;
-  constructor() { }
+  constructor(private surveyService: surveyService) { }
 
   ngOnInit() {
   }
@@ -21,6 +22,10 @@ export class AllSurveysComponent implements OnInit {
 
     ];
     console.log(this.ssn);
+  }
+
+  getAllAnswerBySSN(ssn:number){
+    return this.surveyService.getAnswersBySSN(ssn);
   }
 
 }

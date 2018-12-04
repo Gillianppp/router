@@ -22,6 +22,7 @@ import { surveyDetailComponent } from './survey-center/survey-detail.component';
 import { CommonModule } from '@angular/common';
 import { AddRiscComponent } from './add-risc/add-risc.component';
 import { AllSurveysComponent } from './all-surveys/all-surveys.component';
+import { surveyService } from './survey-center/survey.service';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { AllSurveysComponent } from './all-surveys/all-surveys.component';
 
   ],
   providers: [
-    DialogService
+    DialogService,
+    surveyService
   ],
 
   bootstrap: [ AppComponent ]

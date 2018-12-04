@@ -21,6 +21,52 @@ const httpOptions = {
 const surveys =[];
 const patientResponse = new PatientResponse(false,"",0);
 
+const surveyAnswers=
+[
+  {
+    "QuestionId":40001,
+    "Question":"Relationship with Specific Intended Victim(s): How long have you known them? What has happened in the past between you? What do you think they deserve? Do you see any way things could be changed/improved?",
+    "Answers":[
+      {
+        "ControlId":50001,
+        "Value":"1",
+        "SurveyId":20001
+      },
+      {
+        "ControlId":60001,
+        "Value":"2423423",
+        "SurveyId":20002
+      },
+      {
+        "ControlId":70001,
+        "Value":"Provider hahah",
+        "SurveyId":20003
+      },
+    ]
+  },
+  {
+    "QuestionId":40002,
+    "Question":"Family Support: Who do you live with? Who knows you best? Do people argue a lot at home? What are rules/consequences like at home? How much does your family know about what you do? How does your family respond to your problems/actions?",
+    "Answers":[
+      {
+        "ControlId":50002,
+        "Value":"answer 222",
+        "SurveyId":20001
+      },
+      {
+        "ControlId":60002,
+        "Value":"24234fsdfsdf23",
+        "SurveyId":20002
+      },
+      {
+        "ControlId":70002,
+        "Value":"Provider h234324ahah",
+        "SurveyId":20003
+      },
+    ]
+  },
+
+];
 
 const Answers =[];
 const createSurveyResponse = new CreateSurveyResponse(false);
@@ -51,6 +97,10 @@ export class surveyService {
     return this.getSurveys().pipe(
       map(crises => crises.find(survey => survey.Id === +id))
     );
+  }
+  
+  getAnswersBySSN(ssn:number){
+    return surveyAnswers;
   }
 
   saveTempAnswer(surveyAnswer: SurveyAnswer):void{
