@@ -28,4 +28,16 @@ export class AllSurveysComponent implements OnInit {
     return this.surveyService.getAnswersBySSN(ssn);
   }
 
+  getPatientAnswer(ssn:number){
+    var an= this.getAllAnswerBySSN(ssn).filter(obj => {
+      return obj.SurveyId === 20001
+    });
+    console.log("get answr",an);
+    return an;
+  }
+
+  getComparedAnswersBySSN(ssn:number){
+    return this.surveyService.getComparedAnswersBySSN(ssn);
+  }
+
 }

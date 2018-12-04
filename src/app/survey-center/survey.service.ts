@@ -24,46 +24,95 @@ const patientResponse = new PatientResponse(false,"",0);
 const surveyAnswers=
 [
   {
-    "QuestionId":40001,
-    "Question":"Relationship with Specific Intended Victim(s): How long have you known them? What has happened in the past between you? What do you think they deserve? Do you see any way things could be changed/improved?",
+    "SurveyId":20001,
     "Answers":[
       {
-        "ControlId":50001,
-        "Value":"1",
-        "SurveyId":20001
-      },
-      {
-        "ControlId":60001,
-        "Value":"2423423",
-        "SurveyId":20002
-      },
-      {
-        "ControlId":70001,
-        "Value":"Provider hahah",
-        "SurveyId":20003
-      },
-    ]
+        "QuestionId":40001,
+        "Controls":
+        [
+          {"ControlId":50001,"type":"Textbox","text":"What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?","Value":"vxxcv"},
+          {"ControlId":50003,"type":"Checkbox","text":"Memory for events?","Value":false},
+          {"ControlId":50004,"type":"Checkbox","text":"Consistent report?","Value":true},
+          {"ControlId":50005,"type":"Checkbox","text":"Realistic depiction of events?","Value":true},
+          {"ControlId":50006,"type":"Checkbox","text":"Was there intent?","Value":true},
+          {"ControlId":50002,"type":"Checkbox","text":"Is there a threat?","Value":false}
+        ]
+        } ]
   },
   {
-    "QuestionId":40002,
-    "Question":"Family Support: Who do you live with? Who knows you best? Do people argue a lot at home? What are rules/consequences like at home? How much does your family know about what you do? How does your family respond to your problems/actions?",
+    "SurveyId":20002,
     "Answers":[
       {
-        "ControlId":50002,
-        "Value":"answer 222",
-        "SurveyId":20001
-      },
+        "QuestionId":40001,
+        "Controls":
+        [
+          {"ControlId":50001,"type":"Textbox","text":"What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?","Value":"vxxcv"},
+          {"ControlId":50003,"type":"Checkbox","text":"Memory for events?","Value":false},
+          {"ControlId":50004,"type":"Checkbox","text":"Consistent report?","Value":true},
+          {"ControlId":50005,"type":"Checkbox","text":"Realistic depiction of events?","Value":true},
+          {"ControlId":50006,"type":"Checkbox","text":"Was there intent?","Value":true},
+          {"ControlId":50002,"type":"Checkbox","text":"Is there a threat?","Value":false}
+        ]
+        } ]
+  },
+  {
+    "SurveyId":20003,
+    "Answers":[
       {
-        "ControlId":60002,
-        "Value":"24234fsdfsdf23",
-        "SurveyId":20002
-      },
-      {
-        "ControlId":70002,
-        "Value":"Provider h234324ahah",
-        "SurveyId":20003
-      },
-    ]
+        "QuestionId":40001,
+        "Controls":
+        [
+          {"ControlId":50001,"type":"Textbox","text":"What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?","Value":"vxxcv"},
+          {"ControlId":50003,"type":"Checkbox","text":"Memory for events?","Value":false},
+          {"ControlId":50004,"type":"Checkbox","text":"Consistent report?","Value":true},
+          {"ControlId":50005,"type":"Checkbox","text":"Realistic depiction of events?","Value":true},
+          {"ControlId":50006,"type":"Checkbox","text":"Was there intent?","Value":true},
+          {"ControlId":50002,"type":"Checkbox","text":"Is there a threat?","Value":false}
+        ]
+        } ]
+  }]
+  const compareAnswers =[
+  {
+    "QuestionId":40018,
+    "Question":"Relationship with Specific Intended Victim(s): How long have you known them? What has happened in the past between you? What do you think they deserve? Do you see any way things could be changed/improved?",
+    "Answers":[
+    {
+      "ControlId":50051,
+      "SurveyId":20001,
+      "Value":"fsdfsdf"
+    },
+    {
+      "ControlId":50052,
+      "SurveyId":20002,
+      "Value":"dfsdf"
+    },
+    {
+      "ControlId":50053,
+      "SurveyId":20003,
+      "Value":"dfsdf"
+    }
+  ]
+  },
+  {
+    "QuestionId":40019,
+    "Question":"Family Support: Who do you live with? Who knows you best? Do people argue a lot at home? What are rules/consequences like at home? How much does your family know about what you do? How does your family respond to your problems/actions?",
+    "Answers":[
+    {
+      "ControlId":50061,
+      "SurveyId":20001,
+      "Value":"fsdfsdf"
+    },
+    {
+      "ControlId":50062,
+      "SurveyId":20002,
+      "Value":"dfsdf"
+    },
+    {
+      "ControlId":50063,
+      "SurveyId":20003,
+      "Value":"dfsdf"
+    }
+  ]
   },
 
 ];
@@ -103,6 +152,9 @@ export class surveyService {
     return surveyAnswers;
   }
 
+  getComparedAnswersBySSN(ssn:number){
+    return compareAnswers;
+  }
   saveTempAnswer(surveyAnswer: SurveyAnswer):void{
     this.tempAnswer = surveyAnswer;
   }
