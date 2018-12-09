@@ -33,26 +33,31 @@
 
  <button class="btn btn-risc col-md-3" style="margin-top:20px;" (click)="getAllAnswerBySSN(33)">Get Answer</button>
 
-<div *ngFor="let a of getPatientAnswer(333)">
-{{a.Answers[0].QuestionId}}
-{{a.Answers[0].Controls[0].text}}
+<div *ngFor="let a of getPatientAnswer(333);let i=index;">
+<p *ngFor="let b of a.Controls;let j = index;">
+  {{b.text}}: {{b.value}}
+</p>
+
 </div>
-<table class="table table-hover">
-  <thead>
+
+<div *ngFor="let s of getComparedAnswersBySSN(333)">
+   <h3> {{s.Question}}</h3>
+   <table class="table table-hover">
+   <thead>
     <tr>  
       <th scope="col">Patient's Interview</th>
-      <th scope="col"></th>
+      <th scope="col">Parent's Interview</th>
       <th scope="col">Physician's Interview</th>
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let survey of getAllAnswerBySSN(333)">
-      <td>{{survey.SurveyId}}</td>
-      <td></td>
-      <td></td>
-    </tr>
-  
-  </tbody>
-</table>
+    <tbody>
+      <tr>
+        <td  *ngFor="let a of s.Answers">
+          {{a.Value}}
+        </td>
+      </tr>
+    </tbody>
+   </table>
+</div>
   </div>
 </div>

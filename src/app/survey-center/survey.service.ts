@@ -23,54 +23,41 @@ const patientResponse = new PatientResponse(false,"",0);
 
 const surveyAnswers=
 [
-  {
-    "SurveyId":20001,
-    "Answers":[
-      {
-        "QuestionId":40001,
-        "Controls":
-        [
-          {"ControlId":50001,"type":"Textbox","text":"What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?","Value":"vxxcv"},
-          {"ControlId":50003,"type":"Checkbox","text":"Memory for events?","Value":false},
-          {"ControlId":50004,"type":"Checkbox","text":"Consistent report?","Value":true},
-          {"ControlId":50005,"type":"Checkbox","text":"Realistic depiction of events?","Value":true},
-          {"ControlId":50006,"type":"Checkbox","text":"Was there intent?","Value":true},
-          {"ControlId":50002,"type":"Checkbox","text":"Is there a threat?","Value":false}
-        ]
-        } ]
-  },
-  {
-    "SurveyId":20002,
-    "Answers":[
-      {
-        "QuestionId":40001,
-        "Controls":
-        [
-          {"ControlId":50001,"type":"Textbox","text":"What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?","Value":"vxxcv"},
-          {"ControlId":50003,"type":"Checkbox","text":"Memory for events?","Value":false},
-          {"ControlId":50004,"type":"Checkbox","text":"Consistent report?","Value":true},
-          {"ControlId":50005,"type":"Checkbox","text":"Realistic depiction of events?","Value":true},
-          {"ControlId":50006,"type":"Checkbox","text":"Was there intent?","Value":true},
-          {"ControlId":50002,"type":"Checkbox","text":"Is there a threat?","Value":false}
-        ]
-        } ]
-  },
-  {
-    "SurveyId":20003,
-    "Answers":[
-      {
-        "QuestionId":40001,
-        "Controls":
-        [
-          {"ControlId":50001,"type":"Textbox","text":"What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?","Value":"vxxcv"},
-          {"ControlId":50003,"type":"Checkbox","text":"Memory for events?","Value":false},
-          {"ControlId":50004,"type":"Checkbox","text":"Consistent report?","Value":true},
-          {"ControlId":50005,"type":"Checkbox","text":"Realistic depiction of events?","Value":true},
-          {"ControlId":50006,"type":"Checkbox","text":"Was there intent?","Value":true},
-          {"ControlId":50002,"type":"Checkbox","text":"Is there a threat?","Value":false}
-        ]
-        } ]
-  }]
+  new commonAnswer(20001,[new allAnswer(40001,[
+    new QuestionAnswer(50001,'Textbox','What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?','vxxcv'),
+    new QuestionAnswer(50002,'Checkbox','Is there a threat?','yes'),
+    new QuestionAnswer(50003,'Checkbox','Memory for events','no'),
+    new QuestionAnswer(50004,'Checkbox','Consistent report?','yes'),
+    new QuestionAnswer(50005,'Checkbox','Realistic depiction of events?','no'),
+    new QuestionAnswer(50006,'Checkbox','Was there intent?','yes')
+  ]),
+  new allAnswer(40002,[
+    new QuestionAnswer(50001,'Textbox','3What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?','vxxcv'),
+    new QuestionAnswer(50002,'Checkbox','3Is there a threat?','yes'),
+    new QuestionAnswer(50003,'Checkbox','3Memory for events','no'),
+    new QuestionAnswer(50004,'Checkbox','3Consistent report?','yes'),
+    new QuestionAnswer(50005,'Checkbox','3Realistic depiction of events?','no'),
+    new QuestionAnswer(50006,'Checkbox','3Was there intent?','yes')
+  ])
+]),
+  new commonAnswer(20002,[new allAnswer(40001,[
+    new QuestionAnswer(50001,'Textbox','2What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?','vxxcv'),
+    new QuestionAnswer(50002,'Checkbox','2Is there a threat?','yes'),
+    new QuestionAnswer(50003,'Checkbox','2Memory for events','no'),
+    new QuestionAnswer(50004,'Checkbox','2Consistent report?','yes'),
+    new QuestionAnswer(50005,'Checkbox','2Realistic depiction of events?','no'),
+    new QuestionAnswer(50006,'Checkbox','2Was there intent?','yes')
+  ])]),
+  new commonAnswer(20003,[new allAnswer(40001,[
+    new QuestionAnswer(50001,'Textbox','2What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?','vxxcv'),
+    new QuestionAnswer(50002,'Checkbox','2Is there a threat?','yes'),
+    new QuestionAnswer(50003,'Checkbox','2Memory for events','no'),
+    new QuestionAnswer(50004,'Checkbox','2Consistent report?','yes'),
+    new QuestionAnswer(50005,'Checkbox','2Realistic depiction of events?','no'),
+    new QuestionAnswer(50006,'Checkbox','2Was there intent?','yes')
+  ])]),
+];
+
   const compareAnswers =[
   {
     "QuestionId":40018,
@@ -122,6 +109,8 @@ const createSurveyResponse = new CreateSurveyResponse(false);
 
 import { Injectable, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { commonAnswer, allAnswer } from './commonAnswer';
+import { QuestionAnswer } from './questionAnswer';
 
 
 @Injectable()

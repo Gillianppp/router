@@ -33,10 +33,19 @@ export class AllSurveysComponent implements OnInit {
       return obj.SurveyId === 20001
     });
     console.log("get answr",an);
-    return an;
+    return an[0].Answers;
+  }
+
+  getParentsAnswer(ssn:number){
+    var an= this.getAllAnswerBySSN(ssn).filter(obj => {
+      return obj.SurveyId === 20002;
+    });
+    console.log("get answr",an);
+    return an[0].Answers;
   }
 
   getComparedAnswersBySSN(ssn:number){
+    console.log("getCompared answer");
     return this.surveyService.getComparedAnswersBySSN(ssn);
   }
 
