@@ -3,61 +3,69 @@
     <p style="padding-left: 0;font-size: 20px;margin-top: 30px;" class="col-md-12">Please type in patient's SSN: </p>
     <input class="form-control col-md-8"  type="text" [(ngModel)]="ssn" />
     <button class="btn btn-risc col-md-3" style="margin-top:20px;" (click)="getSurveysBySSN()">Search</button>
-    <div style="display:grid;grid-template-columns:auto auto;margin-top:30px;">
-    <div>MRN:{{ssn}}</div>
-    <div>Patient's Name:</div>
-  </div>
+    
   </div>
   
   <div class="col-md-10 offset-md-1" style="margin-top:60px;">
+  <div *ngIf="showTable">
+    <div style="display:grid;grid-template-columns:auto auto;margin-top:30px;">
+      <div>MRN:{{ssn}}</div>
+      <div>Patient's Name:{{patientName}}</div>
+    </div>
     <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Survey Name</th>
-      <th scope="col">Last Modify Date</th>
-      <th scope="col">Interviewee</th>
-      <th scope="col" colspan="2">Action</th>
-    </tr>
-  </thead>
+      <thead>
+      <tr>
+        <th scope="col">Survey Name</th>
+        <th scope="col">Last Modify Date</th>
+        <th scope="col">Interviewee</th>
+        <th scope="col" colspan="2">Action</th>
+      </tr>
+    </thead>
   <tbody>
     <tr *ngFor="let survey of viewSurveys">
       <td>{{survey.SurveyName}}</td>
       <td>{{survey.InterviewDate}}</td>
       <td>{{survey.Interviewee}}</td>
       <td>{{survey.HasAccessed}}</td>
-      <td>Edit</td>
+      <td><button (click)="getSpecificSurveyAnswers(survey.Id)">View</button></td>
     </tr>
   
   </tbody>
 </table>
 
- <button class="btn btn-risc col-md-3" style="margin-top:20px;" (click)="getAllAnswerBySSN(33)">Get Answer</button>
-
-<div *ngFor="let a of getPatientAnswer(333);let i=index;">
-<p *ngFor="let b of a.Controls;let j = index;">
-  {{b.text}}: {{b.value}}
-</p>
-
+ <button class="btn btn-risc col-md-3" style="margin-top:20px;width:auto;" (click)="showCompareAnswer()">Compare Questionnaires</button>
+</div>
+<div *ngIf="this.specificAnswerShow">
+  <h2 *ngIf="this.commonAnswer.SurveyId==20001">Patient's Survey</h2>
+  <h2 *ngIf="this.commonAnswer.SurveyId==20002">Guardian's Survey</h2>
+  <h2 *ngIf="this.commonAnswer.SurveyId==20003">Physician's Survey</h2>
+  <div *ngFor="let a of this.commonAnswer.Answers;let i=index;">
+  <p *ngFor="let b of a.Controls;let j = index;">
+    {{b.text}}: {{b.value}}
+  </p>
+  </div>
 </div>
 
-<div *ngFor="let s of getComparedAnswersBySSN(333)">
-   <h3> {{s.Question}}</h3>
-   <table class="table table-hover">
-   <thead>
-    <tr>  
-      <th scope="col">Patient's Interview</th>
-      <th scope="col">Parent's Interview</th>
-      <th scope="col">Physician's Interview</th>
-    </tr>
-  </thead>
-    <tbody>
-      <tr>
-        <td  *ngFor="let a of s.Answers">
-          {{a.Value}}
-        </td>
+<div *ngIf="this.compareAnswerShow">
+  <div *ngFor="let s of getComparedAnswersBySSN(333)">
+    <h3> {{s.Question}}</h3>
+    <table class="table table-hover">
+    <thead>
+      <tr>  
+        <th scope="col">Patient's Interview</th>
+        <th scope="col">Parent's Interview</th>
+        <th scope="col">Physician's Interview</th>
       </tr>
-    </tbody>
-   </table>
-</div>
+    </thead>
+      <tbody>
+        <tr>
+          <td  *ngFor="let a of s.Answers">
+            {{a.Value}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    </div>
   </div>
 </div>
