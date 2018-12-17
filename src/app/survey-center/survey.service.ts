@@ -142,6 +142,7 @@ export class surveyService {
   }
 
   getComparedAnswersBySSN(ssn:number){
+    console.log(JSON.stringify(compareAnswers));
     return compareAnswers;
   }
   saveTempAnswer(surveyAnswer: SurveyAnswer):void{

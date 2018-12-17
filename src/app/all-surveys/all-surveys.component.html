@@ -8,10 +8,12 @@
   
   <div class="col-md-10 offset-md-1" style="margin-top:60px;">
   <div *ngIf="showTable">
-    <div style="display:grid;grid-template-columns:auto auto;margin-top:30px;">
+    <div style="display:grid;grid-template-columns:auto auto;margin-top:30px;margin-bottom:20px;">
       <div>MRN:{{ssn}}</div>
       <div>Patient's Name:{{patientName}}</div>
     </div>
+    <button class="btn btn-risc col-md-3" style="margin-top:20px;margin-bottom:20px;width:auto;" (click)="showCompareAnswer()">Compare Questionnaires</button>
+
     <table class="table table-hover">
       <thead>
       <tr>
@@ -26,15 +28,15 @@
       <td>{{survey.SurveyName}}</td>
       <td>{{survey.InterviewDate}}</td>
       <td>{{survey.Interviewee}}</td>
-      <td>{{survey.HasAccessed}}</td>
+      
       <td><button (click)="getSpecificSurveyAnswers(survey.Id)">View</button></td>
+      <td></td>
     </tr>
   
   </tbody>
 </table>
 
- <button class="btn btn-risc col-md-3" style="margin-top:20px;width:auto;" (click)="showCompareAnswer()">Compare Questionnaires</button>
-</div>
+ </div>
 <div *ngIf="this.specificAnswerShow">
   <h2 *ngIf="this.commonAnswer.SurveyId==20001">Patient's Survey</h2>
   <h2 *ngIf="this.commonAnswer.SurveyId==20002">Guardian's Survey</h2>

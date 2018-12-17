@@ -27,6 +27,7 @@ export class AllSurveysComponent implements OnInit {
       new ViewSurvey(20002,"Guardian's survey","10/25/2018","Tom Doe",true),
       new ViewSurvey(20003,"Physician's survey","11/25/2018","Doc White",true),
     ];
+
     console.log(this.ssn);
     this.showTable=true;
     this.patientName = "John Doe";
