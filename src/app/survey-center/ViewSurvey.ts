@@ -1,16 +1,20 @@
 export class ViewSurvey{
-    Id:number;
+    SurveyId:number;
     SurveyName:string;
-    InterviewDate:string;
-    Interviewee:string;
-    HasAccessed:boolean;
+    ModifiedDate:string;
+    IntervieweeName:string;
+    InterviewId:number;
+    Mrn:string;
+    Relationship:string;
 
-    constructor(Id: number,SurveyName: string, InterviewDate:string, Interviewee:string,HasAccessed:boolean) { 
-        this.Id = Id;
+    constructor(SurveyName: string,ModifiedDate:string,IntervieweeName:string,Relationship:string,SurveyId: number,  InterviewId:number,Mrn:string) { 
+        this.SurveyId = SurveyId;
         this.SurveyName = SurveyName;
-        this.InterviewDate = InterviewDate;
-        this.Interviewee = Interviewee;
-        this.HasAccessed = HasAccessed;
+        this.ModifiedDate = ModifiedDate;
+        this.IntervieweeName = IntervieweeName;
+        this.InterviewId = InterviewId;
+        this.Mrn = Mrn;
+        this.Relationship = Relationship;
     }
   
 }

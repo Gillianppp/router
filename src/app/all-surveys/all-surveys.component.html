@@ -26,10 +26,10 @@
   <tbody>
     <tr *ngFor="let survey of viewSurveys">
       <td>{{survey.SurveyName}}</td>
-      <td>{{survey.InterviewDate}}</td>
-      <td>{{survey.Interviewee}}</td>
+      <td>{{survey.ModifiedDate}}</td>
+      <td>{{survey.IntervieweeName}}</td>
       
-      <td><button (click)="getSpecificSurveyAnswers(survey.Id)">View</button></td>
+      <td><button (click)="getSpecificSurveyAnswers(survey.SurveyId)">View</button></td>
       <td></td>
     </tr>
   

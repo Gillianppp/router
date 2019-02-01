@@ -23,9 +23,9 @@ export class AllSurveysComponent implements OnInit {
 
   getSurveysBySSN(){
     this.viewSurveys = [
-      new ViewSurvey(20001,"Patient's survey","10/23/2018","John Doe",true),
-      new ViewSurvey(20002,"Guardian's survey","10/25/2018","Tom Doe",true),
-      new ViewSurvey(20003,"Physician's survey","11/25/2018","Doc White",true),
+      new ViewSurvey("RISC Provider Interview","2019-02-01","provider last nameggsdf","provider",20003,2000012, "777777"),
+      new ViewSurvey("RISC Provider Interview","2019-02-01","provider last nameggsdf","provider",20002,2000012, "777777"),
+      new ViewSurvey("RISC Provider Interview","2019-02-01","provider last nameggsdf","provider",20001,2000012, "777777"),
     ];
 
     console.log(this.ssn);

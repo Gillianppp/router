@@ -115,8 +115,13 @@ import { QuestionAnswer } from './questionAnswer';
 
 @Injectable()
 export class surveyService {
-  private surveyUrl = 'api/surveys';  // URL to web api
-  private riscUrl = 'http://risc-api20180802104103.azurewebsites.net/api/Survey/';
+  private baseUrl = 'http://risc-api20180802104103.azurewebsites.net/api/'
+  private surveyUrl = 'Survey/';  // URL to web api
+  private allSurveysUrl = 'Dashboard/PatientSummary';
+  private surveyDetailUrl = 'Dashboard/SurveyDetails';
+  private compareSurveyUrl = 'Dashboard/SurveyComparison';
+  private riscUrl = this.baseUrl + this.surveyUrl;
+  private dashboardUrl = this.baseUrl + this.allSurveysUrl;
   private tempAnswer;
   private patientId;
   private recId;
@@ -209,6 +214,7 @@ export class surveyService {
     );
 
   }
+
 
   private log(message: string) {
     console.log('${message}');
