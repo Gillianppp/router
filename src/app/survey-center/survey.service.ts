@@ -119,6 +119,7 @@ export class surveyService {
   private riscUrl = 'http://risc-api20180802104103.azurewebsites.net/api/Survey/';
   private tempAnswer;
   private patientId;
+  private recId;
   private hasSaved = false;
   
   constructor(
@@ -153,8 +154,15 @@ export class surveyService {
     this.patientId = id;
   }
 
+  saveRecId(recId:number):void{
+    this.recId = recId;
+  }
+
   retrievePatientId():number{
     return this.patientId;
+  }
+  retrieveRecId():number{
+    return this.recId;
   }
   retrieveTempAnswer():SurveyAnswer{
     return this.tempAnswer;

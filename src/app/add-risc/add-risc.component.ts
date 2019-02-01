@@ -20,7 +20,7 @@ export class AddRiscComponent implements OnInit {
   constructor(private service: surveyService,private router: Router) { }
 
   ngOnInit() {
-    this.patient = new Patient(0,"","","","","");
+    this.patient = new Patient(0,"","","","","","");
   }
 
   savePatient(patient:Patient){
@@ -29,7 +29,7 @@ export class AddRiscComponent implements OnInit {
       console.log('result',response);
       console.log(response.UserData);
       let id = response.UserData;
-    this.router.navigate(['/survey-center', { id: id}]);
+    this.router.navigate(['/survey-center', { id: id,recId:this.patient.MRN}]);
   });
     
    // console.log(response.UserData);

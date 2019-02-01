@@ -20,6 +20,7 @@ import { switchMap }             from 'rxjs/operators';
 export class surveyListComponent implements OnInit {
   surveys$: Observable<Survey[]>;
   selectedId: number;
+  recId:number;
 
   constructor(
     private service: surveyService,
@@ -31,8 +32,11 @@ export class surveyListComponent implements OnInit {
     this.surveys$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
         this.selectedId = +params.get('id');
+        this.recId = +params.get('recId');
         this.service.savePatientId(this.selectedId);
+        this.service.saveRecId(this.recId);
         console.log("This is the patientId:",this.selectedId);
+        console.log("this is recId",this.recId);
         return this.service.getnoSurveys();
       })
     );

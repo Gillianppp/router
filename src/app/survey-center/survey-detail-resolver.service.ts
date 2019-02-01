@@ -13,10 +13,15 @@ export class surveyDetailResolver implements Resolve<Survey> {
   constructor(private cs: surveyService, private router: Router) {}
   survey:Survey;
   patientId:number;
+  recId:number;
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Survey> {
     this.patientId = route.queryParams.patientId;
-
+    this.recId = this.cs.retrieveRecId();
     let id = route.paramMap.get('id');
+    let mrn = route.paramMap.get('recId');
+    let mrn2 = route.queryParams.recId;
+    console.log("mrn",mrn);
+    console.log('mrn2',mrn2);
 
    // this.patientId = this.cs.retrievePatientId();
     console.log("inside resolver service",this.patientId);
@@ -75,7 +80,8 @@ export class surveyDetailResolver implements Resolve<Survey> {
       SurveyId:this.survey.Id,
       SectionAnswers:sectionAnswers,
       User: user ,
-      InterviewDate:new Date()
+      InterviewDate:new Date(),
+      RecId:this.recId,
     }; 
     
     console.log("inside survey answer resolver",this.survey.SurveyAnswer);
