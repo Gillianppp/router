@@ -111,6 +111,7 @@ import { Injectable, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { commonAnswer, allAnswer } from './commonAnswer';
 import { QuestionAnswer } from './questionAnswer';
+import { SurveySummary } from './SurveySummary';
 
 
 @Injectable()
@@ -215,6 +216,17 @@ export class surveyService {
 
   }
 
+  getSurveySummary(mrn:number):Observable<SurveySummary>{
+    var param = {
+      Mrn:mrn,
+      ProgramId:10001
+    }
+    return this.http.post<SurveySummary>(this.baseUrl+this.allSurveysUrl,param,httpOptions)
+    .pipe(
+      catchError(this.handleError('get survey summary',new SurveySummary(undefined,undefined,undefined)))
+    );;
+
+  }
 
   private log(message: string) {
     console.log('${message}');

@@ -6,9 +6,14 @@ export class SurveySummary{
     SummaryItems:ViewSurvey[];
 
     constructor(PatientName:string,MrnId:string,SummaryItems:ViewSurvey[]) { 
+        if(!arguments.length) {
+            return;
+        }
         this.PatientName = PatientName;
         this.MrnId = MrnId;
         this.SummaryItems = SummaryItems;
     }
+
+
   
 }

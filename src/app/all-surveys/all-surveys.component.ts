@@ -22,11 +22,12 @@ export class AllSurveysComponent implements OnInit {
   }
 
   getSurveysBySSN(){
-    this.viewSurveys = [
-      new ViewSurvey("RISC Provider Interview","2019-02-01","provider last nameggsdf","provider",20003,2000012, "777777"),
-      new ViewSurvey("RISC Provider Interview","2019-02-01","provider last nameggsdf","provider",20002,2000012, "777777"),
-      new ViewSurvey("RISC Provider Interview","2019-02-01","provider last nameggsdf","provider",20001,2000012, "777777"),
-    ];
+    var response;
+    this.surveyService.getSurveySummary(this.ssn).subscribe(result => {
+      console.log(result);
+      this.viewSurveys = result.SummaryItems;
+      console.log('response is',response);
+    });
 
     console.log(this.ssn);
     this.showTable=true;
