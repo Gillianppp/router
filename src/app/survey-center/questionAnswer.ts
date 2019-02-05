@@ -1,13 +1,16 @@
 export class QuestionAnswer
 {
-    controlId:number; 
-    type:string;
-    text:string;
-    value:string;
-    constructor(controlId:number,type:string,text:string,value:string){
-            this.controlId= controlId;
-            this.type=type;
-            this.text = text;
-            this.value = value;
+    QuestionId:number;
+    ControlId:number; 
+    Value:string;
+    ControlType:string;
+    ControlText:string;
+    constructor(QuestionId:number,ControlId:number,ControlType:string,ControlText:string,Value:string){
+            this.QuestionId = QuestionId;
+            this.ControlId= ControlId;
+            this.Value = Value;
+            this.ControlType=ControlType;
+            this.ControlText = ControlText;
+            
         }
 }

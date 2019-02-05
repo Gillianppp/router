@@ -21,44 +21,7 @@ const httpOptions = {
 const surveys =[];
 const patientResponse = new PatientResponse(false,"",0);
 
-const surveyAnswers=
-[
-  new commonAnswer(20001,[new allAnswer(40001,[
-    new QuestionAnswer(50001,'Textbox','What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?','vxxcv'),
-    new QuestionAnswer(50002,'Checkbox','Is there a threat?','yes'),
-    new QuestionAnswer(50003,'Checkbox','Memory for events','no'),
-    new QuestionAnswer(50004,'Checkbox','Consistent report?','yes'),
-    new QuestionAnswer(50005,'Checkbox','Realistic depiction of events?','no'),
-    new QuestionAnswer(50006,'Checkbox','Was there intent?','yes')
-  ]),
-  new allAnswer(40002,[
-    new QuestionAnswer(50001,'Textbox','3What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?','vxxcv'),
-    new QuestionAnswer(50002,'Checkbox','3Is there a threat?','yes'),
-    new QuestionAnswer(50003,'Checkbox','3Memory for events','no'),
-    new QuestionAnswer(50004,'Checkbox','3Consistent report?','yes'),
-    new QuestionAnswer(50005,'Checkbox','3Realistic depiction of events?','no'),
-    new QuestionAnswer(50006,'Checkbox','3Was there intent?','yes')
-  ])
-]),
-  new commonAnswer(20002,[new allAnswer(40001,[
-    new QuestionAnswer(50001,'Textbox','2What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?','vxxcv'),
-    new QuestionAnswer(50002,'Checkbox','2Is there a threat?','yes'),
-    new QuestionAnswer(50003,'Checkbox','2Memory for events','no'),
-    new QuestionAnswer(50004,'Checkbox','2Consistent report?','yes'),
-    new QuestionAnswer(50005,'Checkbox','2Realistic depiction of events?','no'),
-    new QuestionAnswer(50006,'Checkbox','2Was there intent?','yes')
-  ])]),
-  new commonAnswer(20003,[new allAnswer(40001,[
-    new QuestionAnswer(50001,'Textbox','2What happened that made others concerned that you wanted to harm someone? Did you say anything or do anything that prompted that worry? What did you say [exact wording] or do? What did you mean by that?','vxxcv'),
-    new QuestionAnswer(50002,'Checkbox','2Is there a threat?','yes'),
-    new QuestionAnswer(50003,'Checkbox','2Memory for events','no'),
-    new QuestionAnswer(50004,'Checkbox','2Consistent report?','yes'),
-    new QuestionAnswer(50005,'Checkbox','2Realistic depiction of events?','no'),
-    new QuestionAnswer(50006,'Checkbox','2Was there intent?','yes')
-  ])]),
-];
-
-  const compareAnswers =[
+const compareAnswers =[
   {
     "QuestionId":40018,
     "Question":"Relationship with Specific Intended Victim(s): How long have you known them? What has happened in the past between you? What do you think they deserve? Do you see any way things could be changed/improved?",
@@ -143,10 +106,7 @@ export class surveyService {
       map(crises => crises.find(survey => survey.Id === +id))
     );
   }
-  
-  getAnswersBySSN(ssn:number){
-    return surveyAnswers;
-  }
+
 
   getComparedAnswersBySSN(ssn:number){
     console.log(JSON.stringify(compareAnswers));
@@ -228,6 +188,16 @@ export class surveyService {
 
   }
 
+  getAnswersBySurvey(surveyId:number,interviewId:number):Observable<allAnswer>{
+    var param ={
+      SurveyId:surveyId,
+      InterviewId:interviewId,
+    }
+    return this.http.post<allAnswer>(this.baseUrl+this.surveyDetailUrl,param,httpOptions)
+    .pipe(
+      catchError(this.handleError('get survey answer',new allAnswer(undefined,undefined)))
+    );;
+  }
   private log(message: string) {
     console.log('${message}');
    // this.messageService.add(`questionnaireService: ${message}`);

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewSurvey } from '../survey-center/viewSurvey';
 import {surveyService} from '../survey-center/survey.service';
-import { commonAnswer } from '../survey-center/commonAnswer';
+import { commonAnswer, allAnswer } from '../survey-center/commonAnswer';
+import { QuestionAnswer } from '../survey-center/questionAnswer';
 
 @Component({
   selector: 'app-all-surveys',
@@ -13,6 +14,8 @@ export class AllSurveysComponent implements OnInit {
   ssn : number;
   patientName:string;
   commonAnswer:commonAnswer;
+  allAnswer:allAnswer;
+  answers:QuestionAnswer[];
   compareAnswerShow:boolean;
   specificAnswerShow:boolean;
   showTable:boolean;
@@ -35,18 +38,20 @@ export class AllSurveysComponent implements OnInit {
 
   }
 
-  getSpecificSurveyAnswers(id:number,ssn:number){
-    var an= this.getAllAnswerBySSN(ssn).filter(obj => {
-      return obj.SurveyId === id;
-    });
-    console.log("survey is",an[0]);
-    this.commonAnswer= an[0];
-    this.specificAnswerShow = true;
-    this.compareAnswerShow = false;
+  getSpecificSurveyAnswers(surveyId:number,interviewId:number){
+    this.getAnswersBySurvey(surveyId,interviewId);
   }
 
-  getAllAnswerBySSN(ssn:number){
-    return this.surveyService.getAnswersBySSN(ssn);
+  getAnswersBySurvey(surveyId:number,interviewId:number){
+      this.surveyService.getAnswersBySurvey(surveyId,interviewId).subscribe(result => {
+      this.allAnswer = result;
+      this.answers = this.allAnswer.Controls;
+      console.log("get answers by survey",result);
+      
+      this.specificAnswerShow = true;
+      this.compareAnswerShow = false;
+    });
+    return this.allAnswer;
   }
 
   showCompareAnswer(){
@@ -54,21 +59,7 @@ export class AllSurveysComponent implements OnInit {
     this.specificAnswerShow = false;
   }
 
-  getPatientAnswer(ssn:number){
-    var an= this.getAllAnswerBySSN(ssn).filter(obj => {
-      return obj.SurveyId === 20001
-    });
-    console.log("get answr",an);
-    return an[0].Answers;
-  }
 
-  getParentsAnswer(ssn:number){
-    var an= this.getAllAnswerBySSN(ssn).filter(obj => {
-      return obj.SurveyId === 20002;
-    });
-    console.log("get answr",an);
-    return an[0].Answers;
-  }
 
   getComparedAnswersBySSN(ssn:number){
     console.log("getCompared answer");

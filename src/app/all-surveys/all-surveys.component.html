@@ -29,7 +29,7 @@
       <td>{{survey.ModifiedDate}}</td>
       <td>{{survey.IntervieweeName}}</td>
       
-      <td><button (click)="getSpecificSurveyAnswers(survey.SurveyId)">View</button></td>
+      <td><button (click)="getSpecificSurveyAnswers(survey.SurveyId,survey.InterviewId)">View</button></td>
       <td></td>
     </tr>
   
@@ -37,14 +37,16 @@
 </table>
 
  </div>
+All answer:
+{{this.allAnswer.Answers}}
 <div *ngIf="this.specificAnswerShow">
-  <h2 *ngIf="this.commonAnswer.SurveyId==20001">Patient's Survey</h2>
-  <h2 *ngIf="this.commonAnswer.SurveyId==20002">Guardian's Survey</h2>
-  <h2 *ngIf="this.commonAnswer.SurveyId==20003">Physician's Survey</h2>
-  <div *ngFor="let a of this.commonAnswer.Answers;let i=index;">
-  <p *ngFor="let b of a.Controls;let j = index;">
-    {{b.text}}: {{b.value}}
-  </p>
+  <h2 *ngIf="this.allAnswer.SurveyId==20001">Patient's Survey</h2>
+  <h2 *ngIf="this.allAnswer.SurveyId==20002">Guardian's Survey</h2>
+  <h2 *ngIf="this.allAnswer.SurveyId==20003">Physician's Survey</h2>
+  <div *ngFor="let a of this.allAnswer.Answers; let i = index;">
+    <p *ngFor="let b of a.Controls; let j=index;">
+      {{b.ControlText}}:{{b.Value}}
+    </p>
   </div>
 </div>
 
