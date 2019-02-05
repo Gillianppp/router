@@ -75,6 +75,7 @@ import { Router } from '@angular/router';
 import { commonAnswer, allAnswer } from './commonAnswer';
 import { QuestionAnswer } from './questionAnswer';
 import { SurveySummary } from './SurveySummary';
+import { compareAnswer } from './CompareAnswers';
 
 
 @Injectable()
@@ -108,9 +109,15 @@ export class surveyService {
   }
 
 
-  getComparedAnswersBySSN(ssn:number){
-    console.log(JSON.stringify(compareAnswers));
-    return compareAnswers;
+  getComparedAnswersBySSN(interviewIds:number[]){
+    var param ={
+      "Interviews":interviewIds
+    }
+    console.log("params",param);
+    return this.http.post<compareAnswer[]>(this.baseUrl+this.compareSurveyUrl,param,httpOptions)
+    .pipe(
+      catchError(this.handleError('get common survey answer',[new compareAnswer(undefined,undefined,undefined)]))
+    );;
   }
   saveTempAnswer(surveyAnswer: SurveyAnswer):void{
     this.tempAnswer = surveyAnswer;

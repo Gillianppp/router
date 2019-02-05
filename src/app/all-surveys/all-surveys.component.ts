@@ -4,6 +4,7 @@ import {surveyService} from '../survey-center/survey.service';
 import { commonAnswer, allAnswer } from '../survey-center/commonAnswer';
 import { QuestionAnswer } from '../survey-center/questionAnswer';
 import { Survey } from '../survey-center/Survey';
+import { compareAnswer } from '../survey-center/CompareAnswers';
 
 @Component({
   selector: 'app-all-surveys',
@@ -21,6 +22,9 @@ export class AllSurveysComponent implements OnInit {
   specificAnswerShow:boolean;
   showTable:boolean;
   allQuestions:Survey[];
+  currentSurveyId:number;
+  currentInterviewId:number;
+  comparedAnswers:compareAnswer[];
   constructor(private surveyService: surveyService) { }
 
   ngOnInit() {
@@ -41,6 +45,8 @@ export class AllSurveysComponent implements OnInit {
   }
 
   getSpecificSurveyAnswers(surveyId:number,interviewId:number){
+    this.currentSurveyId = surveyId;
+    this.currentInterviewId = interviewId;
     this.getAnswersBySurvey(surveyId,interviewId);
   }
 
@@ -66,13 +72,23 @@ export class AllSurveysComponent implements OnInit {
   showCompareAnswer(){
     this.compareAnswerShow= true;
     this.specificAnswerShow = false;
+    this.getComparedAnswersBySSN();
   }
 
 
 
-  getComparedAnswersBySSN(ssn:number){
+  getComparedAnswersBySSN(){
     console.log("getCompared answer");
-    return this.surveyService.getComparedAnswersBySSN(ssn);
+    console.log("view surveys",this.viewSurveys);
+    var interviewIds =[];
+    for(var i=0;i<this.viewSurveys.length;i++){
+      interviewIds.push(this.viewSurveys[i].InterviewId);
+    }
+    this.surveyService.getComparedAnswersBySSN(interviewIds).subscribe(result => {
+      console.log(result);
+
+      this.comparedAnswers = result;
+    });
   }
 
 }
