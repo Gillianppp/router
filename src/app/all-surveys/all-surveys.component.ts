@@ -3,6 +3,7 @@ import { ViewSurvey } from '../survey-center/viewSurvey';
 import {surveyService} from '../survey-center/survey.service';
 import { commonAnswer, allAnswer } from '../survey-center/commonAnswer';
 import { QuestionAnswer } from '../survey-center/questionAnswer';
+import { Survey } from '../survey-center/Survey';
 
 @Component({
   selector: 'app-all-surveys',
@@ -19,6 +20,7 @@ export class AllSurveysComponent implements OnInit {
   compareAnswerShow:boolean;
   specificAnswerShow:boolean;
   showTable:boolean;
+  allQuestions:Survey[];
   constructor(private surveyService: surveyService) { }
 
   ngOnInit() {
@@ -48,12 +50,19 @@ export class AllSurveysComponent implements OnInit {
       this.answers = this.allAnswer.Controls;
       console.log("get answers by survey",result);
       
+      this.getAllSurveys();
       this.specificAnswerShow = true;
       this.compareAnswerShow = false;
     });
     return this.allAnswer;
   }
 
+  getAllSurveys(){
+    this.surveyService.getnoSurveys().subscribe(result => {
+      console.log('all survey',result);
+      this.allQuestions = result;
+    });
+  }
   showCompareAnswer(){
     this.compareAnswerShow= true;
     this.specificAnswerShow = false;

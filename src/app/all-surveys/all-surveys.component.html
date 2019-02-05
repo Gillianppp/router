@@ -37,15 +37,17 @@
 </table>
 
  </div>
-All answer:
-{{this.allAnswer.Answers}}
 <div *ngIf="this.specificAnswerShow">
   <h2 *ngIf="this.allAnswer.SurveyId==20001">Patient's Survey</h2>
   <h2 *ngIf="this.allAnswer.SurveyId==20002">Guardian's Survey</h2>
   <h2 *ngIf="this.allAnswer.SurveyId==20003">Physician's Survey</h2>
   <div *ngFor="let a of this.allAnswer.Answers; let i = index;">
-    <p *ngFor="let b of a.Controls; let j=index;">
-      {{b.ControlText}}:{{b.Value}}
+    <span style="font-size:18px;color:#000;"> Question {{i+1}}</span> {{this.allQuestions[0].Sections[0].Prompts[i].PromptText}}
+    <p *ngFor="let b of a.Controls; let j=index;">  
+      <span *ngIf="b.ControlType=='text'" style="font-size:18px;color:#000;">{{b.Value}}</span>
+      <span *ngIf="b.ControlType=='checkbox'">
+        {{b.ControlText}}: <i [hidden]="!b.Value" class="fas fa-check-circle text-success" ></i>
+      </span>
     </p>
   </div>
 </div>
