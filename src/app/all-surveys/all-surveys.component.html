@@ -27,7 +27,7 @@
   <tbody>
     <tr *ngFor="let survey of viewSurveys">
       <td><span style="font-size:18px;color:#000;">{{survey.SurveyName}}</span></td>
-      <td>{{survey.ModifiedDate}}</td>
+      <td>{{survey.ModifiedDate | date}}</td>
       <td><span style="font-size:18px;color:#000;">{{survey.IntervieweeName}}</span></td>
       
       <td><button class="btn-secondary btn" (click)="getSpecificSurveyAnswers(survey.SurveyId,survey.InterviewId)">View</button></td>
