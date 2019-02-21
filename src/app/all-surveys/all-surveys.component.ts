@@ -58,7 +58,7 @@ export class AllSurveysComponent implements OnInit {
 
     console.log(this.ssn);
     this.showTable=true;
-    this.state = (this.state === 'large' ? 'small' : 'large');
+    this.state = 'small';
     console.log("scale");
   }
 
