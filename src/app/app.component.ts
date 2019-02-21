@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
     <nav class="menu">    
       <a routerLink="/all-surveys"  routerLinkActive="active">DASHBOARD</a>
       <a routerLink="/survey-center" routerLinkActive="active">RISC</a>
-      <a href="">ANALYTICS</a>
       <a style="  float:right;" class="btn btn-primary btn-risc" routerLink="/add">ADD RISC</a>
     </nav>
     <div class="main-body">
