@@ -5,29 +5,14 @@ import { commonAnswer, allAnswer } from '../survey-center/commonAnswer';
 import { QuestionAnswer } from '../survey-center/questionAnswer';
 import { Survey } from '../survey-center/Survey';
 import { compareAnswer } from '../survey-center/CompareAnswers';
-import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-all-surveys',
   templateUrl: './all-surveys.component.html',
-  styleUrls: ['./all-surveys.component.css'],
-  animations: [
-    trigger('myAwesomeAnimation', [
-        state('small', style({
-            transform: 'translateY(-40px) translateX(-100px)',
-        })),
-        state('large', style({
-            transform: 'scale(1)',
-        })),
-        transition('small <=> large', animate('300ms ease-in', keyframes([
-
-        ]))),
-    ]),
-  ]
+  styleUrls: ['./all-surveys.component.css']
 })
 export class AllSurveysComponent implements OnInit {
   viewSurveys : ViewSurvey[];
-  state: string = 'large';
   ssn : number;
   patientName:string;
   commonAnswer:commonAnswer;
@@ -56,8 +41,6 @@ export class AllSurveysComponent implements OnInit {
 
     console.log(this.ssn);
     this.showTable=true;
-    this.state = (this.state === 'large' ? 'small' : 'large');
-    console.log("scale");
   }
 
   getSpecificSurveyAnswers(surveyId:number,interviewId:number){
