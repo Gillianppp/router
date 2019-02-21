@@ -13,10 +13,6 @@
   
   <div class="col-md-10 offset-md-1" style="margin-top:60px;">
   <div *ngIf="showTable">
-    <div style="display:grid;grid-template-columns:auto auto;margin-top:30px;margin-bottom:20px;">
-      <div>MRN:<span style="font-size:18px;color:#000;">{{ssn}}</span></div>
-      <div>Patient's Name:<span style="font-size:18px;color:#000;">{{patientName}}</span></div>
-    </div>
     <button class="btn btn-risc col-md-3" style="margin-top:20px;margin-bottom:20px;width:auto;" (click)="showCompareAnswer()">Compare Questionnaires</button>
 
     <table class="table table-hover">
