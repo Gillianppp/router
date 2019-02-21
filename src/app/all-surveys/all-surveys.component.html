@@ -1,6 +1,6 @@
 <div style="margin:30px auto;padding:20px;">
   <div style="width:1000px;margin:auto;">
-    <p style="padding-left: 0;font-size: 20px;margin-top: 30px;" class="col-md-12">Please type in patient's SSN: </p>
+    <p style="padding-left: 0;font-size: 20px;margin-top: 30px;" class="col-md-12">Please type in patient's MRN: </p>
     <input class="form-control col-md-8"  type="text" [(ngModel)]="ssn" />
     <button class="btn btn-risc col-md-3" style="margin-top:20px;" (click)="getSurveysBySSN()">Search</button>
     
@@ -9,8 +9,8 @@
   <div class="col-md-10 offset-md-1" style="margin-top:60px;">
   <div *ngIf="showTable">
     <div style="display:grid;grid-template-columns:auto auto;margin-top:30px;margin-bottom:20px;">
-      <div>MRN:{{ssn}}</div>
-      <div>Patient's Name:{{patientName}}</div>
+      <div>MRN:<span style="font-size:18px;color:#000;">{{ssn}}</span></div>
+      <div>Patient's Name:<span style="font-size:18px;color:#000;">{{patientName}}</span></div>
     </div>
     <button class="btn btn-risc col-md-3" style="margin-top:20px;margin-bottom:20px;width:auto;" (click)="showCompareAnswer()">Compare Questionnaires</button>
 
@@ -25,11 +25,11 @@
     </thead>
   <tbody>
     <tr *ngFor="let survey of viewSurveys">
-      <td>{{survey.SurveyName}}</td>
+      <td><h5>{{survey.SurveyName}}</h5></td>
       <td>{{survey.ModifiedDate}}</td>
-      <td>{{survey.IntervieweeName}}</td>
+      <td><h5>{{survey.IntervieweeName}}</h5></td>
       
-      <td><button (click)="getSpecificSurveyAnswers(survey.SurveyId,survey.InterviewId)">View</button></td>
+      <td><button class="btn-secondary btn" (click)="getSpecificSurveyAnswers(survey.SurveyId,survey.InterviewId)">View</button></td>
       <td></td>
     </tr>
   
@@ -38,35 +38,38 @@
 
  </div>
 <div *ngIf="this.specificAnswerShow">
-  <h2 *ngIf="this.allAnswer.SurveyId==20001">Patient's Survey</h2>
-  <h2 *ngIf="this.allAnswer.SurveyId==20002">Guardian's Survey</h2>
-  <h2 *ngIf="this.allAnswer.SurveyId==20003">Physician's Survey</h2>
+  <h3 class="mb-4" *ngIf="this.allAnswer.SurveyId==20001">Patient's Survey</h3>
+  <h3 class="mb-4" *ngIf="this.allAnswer.SurveyId==20002">Guardian's Survey</h3>
+  <h3 class="mb-4" *ngIf="this.allAnswer.SurveyId==20003">Physician's Survey</h3>
   <div *ngFor="let a of this.allAnswer.Answers; let i = index;">
-    <span style="font-size:18px;color:#000;"> Question {{i+1}}</span> {{this.allQuestions[0].Sections[0].Prompts[i].PromptText}}
+    <h4> Question {{i+1}}</h4>
+    <p>{{this.allQuestions[0].Sections[0].Prompts[i].PromptText}}</p>
     <p *ngFor="let b of a.Controls; let j=index;">  
       <span *ngIf="b.ControlType=='text'" style="font-size:18px;color:#000;">{{b.Value}}</span>
-      <span *ngIf="b.ControlType=='checkbox'">
-        {{b.ControlText}}: <i [hidden]="!b.Value" class="fas fa-check-circle text-success" ></i>
-      </span>
+      <span *ngIf="b.ControlType=='checkbox'">- {{b.ControlText}}: <i [hidden]="!b.Value" class="fas fa-check-circle text-success" ></i></span>
     </p>
   </div>
 </div>
 
 <div *ngIf="this.compareAnswerShow">
-  <div *ngFor="let s of this.comparedAnswers">
-    <h3> {{s.Question}}</h3>
+  <h3 class="mb-4">Review of Safety Concern Domains</h3>
+  <div *ngFor="let s of this.comparedAnswers;let i=index;">
+    <h4> Question {{i+1}}</h4>
+    <p>{{s.Question}}</p>
     <table class="table table-hover">
     <thead>
       <tr>  
-        <th scope="col">Patient's Interview</th>
-        <th scope="col">Parent's Interview</th>
-        <th scope="col">Physician's Interview</th>
+        <th scope="col" *ngFor="let a of s.Answers">
+            <span *ngIf="a.SurveyId==20001">Patient</span>
+            <span *ngIf="a.SurveyId==20002">Parent/Guardian</span>
+            <span *ngIf="a.SurveyId==20003">Physician</span>
+        </th>
       </tr>
     </thead>
       <tbody>
         <tr>
           <td  *ngFor="let a of s.Answers">
-            {{a.Value}}
+            <h5>{{a.Value}}</h5>
           </td>
         </tr>
       </tbody>

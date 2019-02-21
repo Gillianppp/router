@@ -35,13 +35,12 @@ export class AllSurveysComponent implements OnInit {
     this.surveyService.getSurveySummary(this.ssn).subscribe(result => {
       console.log(result);
       this.viewSurveys = result.SummaryItems;
+      this.patientName = result.PatientName;
       console.log('response is',response);
     });
 
     console.log(this.ssn);
     this.showTable=true;
-    this.patientName = "John Doe";
-
   }
 
   getSpecificSurveyAnswers(surveyId:number,interviewId:number){

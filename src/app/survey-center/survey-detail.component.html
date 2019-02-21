@@ -12,7 +12,9 @@
     </div>
       <ul class="questions">
         <li *ngFor="let section of survey.Sections;let i = index;">
-        <div style="clear:both;">            
+             
+        <div style="clear:both;">         
+            {{section.Title}}   
         <div>
             <ul class="q-list">
                 <li  *ngFor="let prompt of section.Prompts;let j = index;">
