@@ -94,7 +94,7 @@ export class surveyDetailComponent implements OnInit {
     }
     // Otherwise ask the user with the dialog service and return its
     // observable which resolves to true or false when the user decides
-    return this.dialogService.confirm('You will be navigated away to another page. Are you sure you want to discard all your unsaved changes?');
+    return this.dialogService.confirm('You will be navigated away to another page.  you want to discard all your unsaved changes?');
   }
 
   gotoCrises() {
